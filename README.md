@@ -1,28 +1,47 @@
-## Especificaciones del challenge
+## Challenge specifications
 
-**Tecnologías usadas**
+**Technologies used**
 - DOCKER
 - DOCKER COMPOSE 3
 - Node 14.17
 - MongoDB 4.2
-- Serverless
+- VueJS
 
-**Requisito**
+**Requirement**
 
-- Instalar Docker en tu máquina(https://docs.docker.com/engine/install/)
+- Install Docker on your machine(https://docs.docker.com/engine/install/)
 
-**Instalacion**
-- Clonar el proyecto. 
-- Ingresar a la carpeta del proyecto.
-- Copiar y pegar los archivos .env.example a .env y .env.test.example a .env.test
+**Instalation**
+- Clone the project.
+- Enter the project folder.
+- Copy and paste the files .env.example to .env and .env.test.example to .env.test (BACKEND)
 ```bash
 cp .env.example .env && cp .env.test.example .env.test
 ```
-- Iniciar el servicio: 
+- Copy and paste the files .env.example to .env and .env.test.example to .env.test (BACKEND)
+```bash
+cp .env.example .env && cp .env.test.example .env.test
+```
+- Docker for the service mongo:
 ```bash
 docker-compose up -d
 ```
-- Ejecutar los test (Se uso la libreria Jest): 
+- The backend directory is the service in express
+- install packages (node v14.17):
 ```bash
-docker-compose exec serverless-node npm run test
+npm install
 ```
+- start the service:
+```bash
+npm start
+```
+- The microfrontend directory is the service in vue
+- install packages (node v16.19):
+```bash
+npm install
+```
+- start the service:
+```bash
+npm npm run dev
+```
+NOTE: the first base of the project was made in serverless but AWS updated its dependencies therefore everything was changed to express

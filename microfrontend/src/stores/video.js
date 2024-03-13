@@ -1,7 +1,7 @@
 import { reactive, ref } from "vue";
 import { defineStore } from "pinia";
  
-export const useCard = defineStore("card", () => {
+export const useVideo = defineStore("video", () => {
   const errors = reactive({});
   const dataVideo = reactive({});
   const loading = ref(false);

@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted } from "vue";
-import { useCard } from "@/stores/card";
+import { useVideo } from "@/stores/video";
  
-const store = useCard();
+const store = useVideo();
  
 onMounted(store.getData);
 </script>

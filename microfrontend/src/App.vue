@@ -8,12 +8,12 @@ import { RouterLink, RouterView } from "vue-router";
       <nav class="flex gap-4 justify-between">
         <div class="flex gap-4 items-center">
           <h2 class="text-xl font-bold">
-            Test vue 3
+            Mini Project VideoJS
           </h2>
         </div>
         <div class="flex gap-4 items-center">
-          <RouterLink class="router-link" :to="{ name: 'card' }">
-            Card
+          <RouterLink class="router-link" :to="{ name: 'video' }">
+            Video
           </RouterLink>
         </div>
       </nav>

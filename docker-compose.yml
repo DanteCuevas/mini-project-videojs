@@ -1,21 +1,6 @@
 version: "3"
 services:
 
-    # Node service
-    serverless-node:
-        build: .
-        container_name: serverless-node
-        working_dir: /app
-        ports:
-            - "4001:4000"
-        volumes:
-            - ./:/app
-            - /app/node_modules/
-        networks:
-            - serverless-network
-        depends_on:
-            - serverless-mongodb
-
     # Mongo database service
     serverless-mongodb:
         image: mongo:4.2-bionic
