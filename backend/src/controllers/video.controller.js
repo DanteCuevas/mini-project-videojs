@@ -4,6 +4,7 @@ const { FindLatestVideoAction } = require('../actions/video/findLatest.action')
 const { CreateVideoAction } = require('../actions/video/create.action');
 const { TranScriptVideoAction } = require('../actions/video/transcript.action');
 const { createWorker } = require('tesseract.js');
+const path = require("path");
 
 const get = async (req, res) => {
   try {
@@ -41,16 +42,36 @@ const post = async (req, res) => {
 }
 
 const transcript = async (req, res) => {
-  //try {
+  try {
     const video = await TranScriptVideoAction.run();
 
     return res.json(video)
-  
+  } catch (error) {
+    return res.status(500).end()
+  }
+}
+
+const download = async (req, res) => {
+  try {
+    const { type } = req.params
+    const video = await TranScriptVideoAction.run();
+    let filePath = path.resolve(`./${video._id}.jpg`);
+    let fileName = `./${video._id}.jpg`;
+    if (type == 'audio') {
+      filePath = path.resolve(`./${video._id}.mp3`);
+      fileName = `./${video._id}.mp3`;
+    }
+
+    res.download(filePath, fileName);
+  } catch (error) {
+    return res.status(500).end()
+  }
 }
 
 module.exports = {
   get,
   ocr,
   post,
-  transcript
+  transcript,
+  download
 }

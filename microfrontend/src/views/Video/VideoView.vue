@@ -143,12 +143,28 @@ onMounted(store.getData);
 					</p>
 				</div>
 
+				
 				<div class="mb-4">
 					<label class="block text-gray-700 font-bold mb-2" for="current-link">
 						Download the audio
 					</label>
 					<p class="text-purple-700 text-opacity-100" v-if="store.dataVideo.value">
-						<a :href="store.dataVideo.value.audio" target="_blank" download="true">Download</a>
+						<button
+							class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+							type="button"
+							v-on:click="store.clickDownload('download-audio')"
+							:disabled="store.loading">
+							<IconSpinner v-show="store.loading" />
+							Download
+						</button>
+						<a
+							id="download-audio"
+							href="http://ec2-54-167-70-89.compute-1.amazonaws.com:3001/api/video/download?type=audio"
+							style=" display: none;"
+							download
+						>
+						Download
+						</a>
 					</p>
 				</div>
 
@@ -176,7 +192,7 @@ onMounted(store.getData);
 						<button v-if="!store.dataVideo.value.textES"
                 			class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 			type="button"
-                			v-on:click="store.getTranscript()"
+                			v-on:click="store.getTranscript"
               			>
 							Run Translate
 						</button>
@@ -225,7 +241,7 @@ onMounted(store.getData);
 
 				<div class="mb-4">
 					<label class="block text-gray-700 font-bold mb-2" for="current-link">
-						first frame of the video
+						First frame of the video
 					</label>
 					<p class="text-purple-700 text-opacity-100" v-if="store.dataVideo.value">
 						<img :src="store.dataVideo.value.image" :alt="store.dataVideo.value._id"/>
@@ -237,7 +253,22 @@ onMounted(store.getData);
 						Download the image
 					</label>
 					<p class="text-purple-700 text-opacity-100" v-if="store.dataVideo.value">
-						<a :href="store.dataVideo.value.image" target="_blank" download>Download</a>
+						<button
+							class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+							type="button"
+							v-on:click="store.clickDownload('download-img')"
+							:disabled="store.loading">
+							<IconSpinner v-show="store.loading" />
+							Download
+						</button>
+						<a
+							id="download-img"
+							href="http://ec2-54-167-70-89.compute-1.amazonaws.com:3001/api/video/download?type=img"
+							style=" display: none;"
+							download
+						>
+						Download
+						</a>
 					</p>
 				</div>
 
@@ -273,7 +304,7 @@ onMounted(store.getData);
 					<label class="block text-gray-700 font-bold mb-2" for="current-link">
 						List all detected words/phrases in a monospaced font
 					</label>
-					<p class="text-purple-700 text-opacity-100 font-mono" v-if="store.dataVideo.value">
+					<p class="text-purple-700 text-opacity-100 font-mono" v-if="store.dataVideo.value" style="font-size: xx-large;">
 						{{store.textOCR}}
 					</p>
 				</div>

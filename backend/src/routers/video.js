@@ -6,5 +6,6 @@ router.get('/', videoController.get)
 router.get('/ocr', videoController.ocr)
 router.get('/transcript', videoController.transcript)
 router.post('/', videoController.post)
+router.get('/download', videoController.download)
 
 module.exports = router

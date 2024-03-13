@@ -85,6 +85,21 @@ export const useVideo = defineStore("video", () => {
         isHidden.value = true;
       });
   }
+
+  async function loadingAction(x) {
+    if (loading.value) return;
  
-  return { form, errors, loading, resetForm, getData, handleSubmit, dataVideo, getTranscript, runOCR, textOCR, isHidden};
+    loading.value = true;
+    setTimeout(() => {
+      loading.value = false;
+    }, x*1000);
+  }
+
+  async function clickDownload(id) {
+    loadingAction(5)
+    const tagDownload = document.getElementById(id);
+    tagDownload.click()
+  }
+ 
+  return { form, errors, loading, resetForm, getData, handleSubmit, dataVideo, getTranscript, runOCR, textOCR, isHidden, clickDownload};
 });
