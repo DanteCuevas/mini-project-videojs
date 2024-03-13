@@ -51,27 +51,10 @@ const transcript = async (req, res) => {
   }
 }
 
-const download = async (req, res) => {
-  try {
-    const { type } = req.params
-    const video = await TranScriptVideoAction.run();
-    let filePath = path.resolve(`./${video._id}.jpg`);
-    let fileName = `./${video._id}.jpg`;
-    if (type == 'audio') {
-      filePath = path.resolve(`./${video._id}.mp3`);
-      fileName = `./${video._id}.mp3`;
-    }
-
-    res.download(filePath, fileName);
-  } catch (error) {
-    return res.status(500).end()
-  }
-}
 
 module.exports = {
   get,
   ocr,
   post,
-  transcript,
-  download
+  transcript
 }

@@ -86,19 +86,33 @@ export const useVideo = defineStore("video", () => {
       });
   }
 
-  async function loadingAction(x) {
+  function clickDownload(fileUrl){
     if (loading.value) return;
  
     loading.value = true;
-    setTimeout(() => {
-      loading.value = false;
-    }, x*1000);
-  }
-
-  async function clickDownload(id) {
-    loadingAction(5)
-    const tagDownload = document.getElementById(id);
-    tagDownload.click()
+    const name = fileUrl.split('/');
+    console.log(fileUrl)
+    fetch(fileUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to download file');
+        }
+        return response.blob();
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', name[name.length-1]);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        loading.value = false;
+      })
+      .catch(error => {
+        loading.value = false;
+        console.error('Error downloading file:', error);
+      });
   }
  
   return { form, errors, loading, resetForm, getData, handleSubmit, dataVideo, getTranscript, runOCR, textOCR, isHidden, clickDownload};

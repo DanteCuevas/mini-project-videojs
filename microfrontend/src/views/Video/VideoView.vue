@@ -152,20 +152,13 @@ onMounted(store.getData);
 						<button
 							class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
 							type="button"
-							v-on:click="store.clickDownload('download-audio')"
+							v-on:click="store.clickDownload(store.dataVideo.value.audio)"
 							:disabled="store.loading">
 							<IconSpinner v-show="store.loading" />
 							Download
 						</button>
-						<a
-							id="download-audio"
-							href="http://ec2-54-167-70-89.compute-1.amazonaws.com:3001/api/video/download?type=audio"
-							style=" display: none;"
-							download
-						>
-						Download
-						</a>
 					</p>
+					
 				</div>
 
 			</div>
@@ -256,19 +249,11 @@ onMounted(store.getData);
 						<button
 							class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
 							type="button"
-							v-on:click="store.clickDownload('download-img')"
+							v-on:click="store.clickDownload(store.dataVideo.value.image)"
 							:disabled="store.loading">
 							<IconSpinner v-show="store.loading" />
 							Download
 						</button>
-						<a
-							id="download-img"
-							href="http://ec2-54-167-70-89.compute-1.amazonaws.com:3001/api/video/download?type=img"
-							style=" display: none;"
-							download
-						>
-						Download
-						</a>
 					</p>
 				</div>
 
