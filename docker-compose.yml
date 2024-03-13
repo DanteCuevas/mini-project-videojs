@@ -1,0 +1,43 @@
+version: "3"
+services:
+
+    # Node service
+    serverless-node:
+        build: .
+        container_name: serverless-node
+        working_dir: /app
+        ports:
+            - "4001:4000"
+        volumes:
+            - ./:/app
+            - /app/node_modules/
+        networks:
+            - serverless-network
+        depends_on:
+            - serverless-mongodb
+
+    # Mongo database service
+    serverless-mongodb:
+        image: mongo:4.2-bionic
+        container_name: serverless-mongodb
+        ports:
+            - "27018:27017"
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=admin
+            - MONGO_INITDB_ROOT_PASSWORD=pass
+        # named volumes
+        volumes:
+            - mongo-db:/data/db
+            - mongo-config:/data/configdb
+            - ./mongo-entrypoint/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
+        networks:
+            - serverless-network
+
+volumes:
+    # default dir on Ubuntu: /var/lib/docker/volumes
+    mongo-db:
+    mongo-config:
+
+networks:
+    serverless-network:
+        driver: bridge
