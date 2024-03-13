@@ -13,4 +13,4 @@ window.axios.defaults.headers.common["Content-Type"] = "application/json";
 //window.axios.defaults.headers.common["Host"] = "localhost:3001";
 window.axios.defaults.headers.common["Accept"] = "application/json";
 //window.axios.defaults.withCredentials = true;
-window.axios.defaults.baseURL = "http://localhost:3001/api";
+window.axios.defaults.baseURL = "http://ec2-54-167-70-89.compute-1.amazonaws.com:3001/api";
